@@ -9,20 +9,24 @@ window.addEventListener('load', () => {
     /* -------------------------------------------------------------------------- */
     form.addEventListener('submit', e => {
         e.preventDefault();
-
-        const email = normalizarEmail(inputEmail.value);
-        const data = {
-            email : email,
-            password : inputPassword.value
+        const aux = validarEmail(inputEmail.value)
+        if(aux){
+            const email = normalizarEmail(inputEmail.value);
+            const data = {
+                email : email,
+                password : inputPassword.value
+            }
+            const settings = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }
+            realizarLogin(settings)
+        } else {
+            mostrarErrores("email")
         }
-        const settings = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        }
-        realizarLogin(settings)
     });
 
 
