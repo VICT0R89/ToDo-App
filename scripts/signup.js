@@ -47,7 +47,7 @@ window.addEventListener('load', function () {
             } else if (json === "El usuario ya se encuentra registrado") {
                 inputEmail.classList.add("error")
                 inputEmail.value = ""
-                inputEmail.setAttribute("placeholder", `${errores.email2Error}`)
+                inputEmail.setAttribute("placeholder", `${errores.emailError}`)
             }
         })
         .catch(error => {

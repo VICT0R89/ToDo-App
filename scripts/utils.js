@@ -10,9 +10,7 @@ const { regTexto, regEmail, regContrasenia } = regExp;
 let errores = {
   nombreError : "Solo letras, con un mínimo de 3.",
   apellidoError : "Solo letras, con un mínimo de 3.",
-  emailError : "Email inválido, suUsuario@suDominio.suTLD",
-  email2Error : "Este usuario ya se encuentra registrado.",
-  email3Error : "Este usuario no se encuentra registrado.",
+  emailError : "Usuario o contraseña incorrecto",
   passwordError : "Entre 8 y 12 caracteres.",
   passwordError2 : "La contraseña es incorrecta.",
   passwordRepetidoError : "Sus contraseñas no coinciden."

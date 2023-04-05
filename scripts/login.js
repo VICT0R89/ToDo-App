@@ -39,7 +39,6 @@ window.addEventListener('load', () => {
         fetch(url, settings)
         .then(response => response.json())
         .then((json)=>{
-            console.log(json);
             if(json.jwt){
                 localStorage.setItem('jwt', JSON.stringify(json.jwt));
                 location.replace('mis-tareas.html');
@@ -50,7 +49,7 @@ window.addEventListener('load', () => {
             } else if (json === "El usuario no existe") {
                 inputEmail.classList.add("error")
                 inputEmail.value = ""
-                inputEmail.setAttribute("placeholder", `${errores.email3Error}`)
+                inputEmail.setAttribute("placeholder", `${errores.emailError}`)
             }
         })
         .catch(error => {
