@@ -148,12 +148,12 @@ window.addEventListener('load', function () {
         let { description, id, createdAt } = tarea
         const fecha = obtnerFecha(createdAt)
         return `
-        <li class="tarea">
-        <button class="change" id="${id}"><i class="fa-regular fa-circle"></i></button>
-        <div class="descripcion">  
-        <p class="nombre">${description}</p>
-        <p class="timestamp">${fecha}</p>
-        </div>
+        <li class="tarea" data-aos="zoom-out-right" data-aos-duration="1000">
+          <button class="change" id="${id}"><i class="fa-regular fa-circle"></i></button>
+          <div class="descripcion">  
+            <p class="nombre">${description}</p>
+            <p class="timestamp">${fecha}</p>
+          </div>
         </li>
         `
       }).join("")
@@ -167,18 +167,22 @@ window.addEventListener('load', function () {
         let { description, id, createdAt } = tarea
         const fecha = obtnerFecha(createdAt)
         return `
-      <li class="tarea">
-      <div class="hecha">
-      <i class="fa-regular fa-circle-check"></i>
-      </div>
-      <div class="descripcion">  
-          <p class="nombre">${description}</p>
-          <p class="timestamp">${fecha}</p>
-          <div class="cambios-estados">
-          <button class="change incompleta" id="${id}" ><i class="fa-solid fa-rotate-left"></i></button>
-          <button class="borrar" id="${id}"><i class="fa-regular fa-trash-can"></i></button>
-          </div>
-          </div>
+          <li class="tarea" data-aos="flip-right" data-aos-duration="500">
+            <div class="hecha" data-aos="fade-right" data-aos-duration="1000">
+              <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <div class="descripcion" 
+              data-aos="fade-right"
+              data-aos-easing="ease-in-sine"
+              data-aos-duration="1000"
+            >  
+              <p class="nombre">${description}</p>
+              <p class="timestamp">${fecha}</p>
+              <div class="cambios-estados">
+                <button class="change incompleta" id="${id}" ><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="borrar" id="${id}"><i class="fa-regular fa-trash-can"></i></button>
+              </div>
+            </div>
           </li>
           `
         }).join("")

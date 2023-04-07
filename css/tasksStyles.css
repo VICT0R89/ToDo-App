@@ -168,6 +168,9 @@ main h2 {
     border-radius: 50vh;
     padding: .1rem .5rem;
 }
+.tareas-terminadas{
+    margin-bottom: 4rem;
+}
 
 .tareas-terminadas .tarea {
     background-color: var(--app-grey);
@@ -230,11 +233,9 @@ main h2 {
 }
 
 footer {
-    height: 2rem;
+    height: 3rem;
     width: 100%;
     background-color: var(--negro);
-    position: fixed;
-    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;

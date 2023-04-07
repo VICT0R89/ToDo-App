@@ -9,7 +9,8 @@
   <link rel="icon" type="image/x-icon" href="./assets/logo.ico">
   <meta name="description" content="Digital House CTD | Proyecto integrador | FRONTEND II | VÍCTOR GUTIÉRREZ"/>
 
-
+  <!-- ---------------- estilos AOS ---------------- -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- ---------------- estilos compartidos de login y signup ---------------- -->
   <link rel="stylesheet" href="./css/loginSignupStyles.css">
 
@@ -21,7 +22,7 @@
 
 <body>
 
-  <header class="container">
+  <header class="container" data-aos="fade-down" data-aos-duration="1000">
     <nav>
       <h1>To-Do App</h1>
       <img src="./assets/logoMain.png" alt="logo Victor">
@@ -29,27 +30,24 @@
   </header>
 
   <div class="container">
-    <form>
+    <form  data-aos="zoom-in-up" data-aos-duration="1000">
       <div class="form-header">
         <h2>To-Do App</h2>
         <p class="rounded">Login</p>
       </div>
-
       <label>Email</label>
       <input id="inputEmail" type="text">
       <label>Contraseña</label>
       <input id="inputPassword" type="password">
-
       <button type="submit">Ingresar</button>
-
     </form>
-
-    <div class="ingresarA">
+    <div class="ingresarA" data-aos="fade-up" data-aos-duration="1000">
       <a href="signup.html">¿No tienes una cuenta? Regístrate aquí</a>
     </div>
-
   </div>
-
+  <!-- SCRIPT AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 
 </html>
