@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
   /*                 FUNCIÓN 2 - Obtener nombre de usuario [GET]                */
   /* -------------------------------------------------------------------------- */
 
-  function obtenerNombreUsuario() {
+  async function obtenerNombreUsuario() {
     const url = "https://todo-api.ctd.academy/v1/users/getMe";
     const settings = {
       method: 'GET',
@@ -38,12 +38,10 @@ window.addEventListener('load', function () {
         'Content-Type': 'application/json'
       }
     }
-    fetch(url, settings)
-    .then(response => response.json())
-    .then(data => {
-      let { firstName, lastName } = data
-      userName.innerText = `${firstName} ${lastName}`
-    })
+    const response = await fetch(url, settings)
+    const json = await response.json()
+    let { firstName, lastName } = json
+    userName.innerText = `${firstName} ${lastName}`    
   };
   obtenerNombreUsuario()
 
@@ -52,7 +50,7 @@ window.addEventListener('load', function () {
   /*                 FUNCIÓN 3 - Obtener listado de tareas [GET]                */
   /* -------------------------------------------------------------------------- */
 
-  function consultarTareas() {
+  async function consultarTareas() {
     const url = "https://todo-api.ctd.academy/v1/tasks";
     const settings = {
       method: 'GET',
@@ -61,15 +59,12 @@ window.addEventListener('load', function () {
         'Content-Type': 'application/json'
       }
     }
-    fetch(url, settings)
-    .then(response => response.json())
-    .then(listado=>{
-      renderizarTareas(listado);
-      botonesCambioEstado(listado);
-      botonBorrarTarea(listado)
-    })
-    .finally(()=>{
-    })
+
+    const response = await fetch(url, settings)
+    const json = await response.json()
+    renderizarTareas(json);
+    botonesCambioEstado(json);
+    botonBorrarTarea(json)
   };
   consultarTareas()
 
@@ -77,7 +72,7 @@ window.addEventListener('load', function () {
   /*                    FUNCIÓN 4 - Crear nueva tarea [POST]                    */
   /* -------------------------------------------------------------------------- */
 
-  formCrearTarea.addEventListener('submit', function (e) {
+  formCrearTarea.addEventListener('submit', async (e) => {
     e.preventDefault();
     btnOff(".nueva-tarea > button")
     const url = "https://todo-api.ctd.academy/v1/tasks";
@@ -93,17 +88,9 @@ window.addEventListener('load', function () {
         'Content-Type': 'application/json'
       }
     }
-    fetch(url, settings)
-    .then(response => response.json())
-    .then(task=>{
-      consultarTareas()
-    })
-    .catch((error)=>{
-      console.log("error " + error);
-    })
-    .finally(()=>{
-      nuevaTarea.value = ""
-    })
+    await fetch(url, settings)
+    consultarTareas()
+    nuevaTarea.value = ""
   })
   
   //--------------formatear fecha----------------------------
@@ -200,7 +187,7 @@ window.addEventListener('load', function () {
   /*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
   /* -------------------------------------------------------------------------- */
 
-  const llamadaPut = (url, completed, description) => {
+  const llamadaPut = async (url, completed, description) => {
     const data ={
         description: description,
         completed: !completed
@@ -213,11 +200,8 @@ window.addEventListener('load', function () {
         'Content-Type': 'application/json'
       }
     }
-    this.fetch(url, config)
-    .then(response => response.json())
-    .then((tarea)=>{
-      consultarTareas()
-    })
+    await fetch(url, config)
+    consultarTareas()
   }
 
   function botonesCambioEstado(listado) {
@@ -242,7 +226,7 @@ window.addEventListener('load', function () {
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
 
-  const llamadaDelete = url => {
+  const llamadaDelete = async (url) => {
     const config = {
       method: "DELETE",
       headers:{
@@ -250,8 +234,8 @@ window.addEventListener('load', function () {
         'Content-Type': 'application/json'
       }
     }
-    this.fetch(url, config)
-    .then(()=>consultarTareas())
+    await fetch(url, config)
+    consultarTareas()
   }
 
   function botonBorrarTarea(listado) {
