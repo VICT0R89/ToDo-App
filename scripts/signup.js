@@ -27,9 +27,9 @@ window.addEventListener('load', function () {
     /* -------------------------------------------------------------------------- */
     /*                    FUNCIÓN 2: Realizar el signup [POST]                    */
     /* -------------------------------------------------------------------------- */
-    function realizarRegister(settings) {
+    async function realizarRegister(settings) {
         if (!settings){return}
-        btnOff("button")
+        btnOff("button");
         const url = "https://todo-api.ctd.academy/v1/users"
         const config = {
             method: "POST",
@@ -38,32 +38,23 @@ window.addEventListener('load', function () {
             },
             body: JSON.stringify(settings),
         }
-        fetch(url, config)
-        .then(response => response.json())
-        .then(json => {
-            if(json.jwt){
-                localStorage.setItem('jwt', JSON.stringify(json.jwt));
-                location.replace('mis-tareas.html');
-            } else if (json === "El usuario ya se encuentra registrado") {
-                inputEmail.classList.add("error")
-                inputEmail.value = ""
-                inputEmail.setAttribute("placeholder", `${errores.emailError}`)
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        })
-        .finally(()=>{
-            btnOn("button");
-        });
+        const response = await fetch(url, config)
+        const json = await response.json()
+        if(json.jwt){
+            localStorage.setItem('jwt', JSON.stringify(json.jwt));
+            location.replace('mis-tareas.html');
+        } else if (json === "El usuario ya se encuentra registrado") {
+            inputEmail.classList.add("error")
+            inputEmail.value = ""
+            inputEmail.setAttribute("placeholder", `${errores.emailError}`)
+        }
+        btnOn("button");
     };
-
 
     inputNombre.addEventListener('click', cambiarClase);
     inputApellido.addEventListener('click', cambiarClase);
     inputEmail.addEventListener('click', cambiarClase);
     inputPassword.addEventListener('click', cambiarClase);
     inputPasswordRepetida.addEventListener('click', cambiarClase);
-
 
 });

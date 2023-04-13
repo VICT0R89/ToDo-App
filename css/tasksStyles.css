@@ -247,6 +247,21 @@ footer img {
     height: 50%;
 }
 
+.footer-index {
+    bottom: 0px;
+    position: absolute;
+}
+
+.myWebsite{
+    text-decoration: none;
+    color: rgb(220, 149, 44);
+    margin-left: 5px;
+    transition: color .7s;
+}
+.myWebsite:hover{
+    color: rgb(161, 27, 15);
+}
+
 .active {
     background-color: #ff7059ff;
     color: rgb(187, 181, 181);
