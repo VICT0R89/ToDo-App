@@ -6,6 +6,9 @@ window.addEventListener('load', function () {
     const inputEmail = document.getElementById('inputEmail');
     const inputPassword = document.getElementById('inputPassword');
     const inputPasswordRepetida = document.getElementById('inputPasswordRepetida');
+    const inputGenerarPass = this.document.getElementById('inputGenerarPass');
+    const passGenerado = this.document.getElementById('passGenerado');
+    const cantDigitos = this.document.getElementById('cantDigitos')
     /* -------------------------------------------------------------------------- */
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
@@ -51,10 +54,34 @@ window.addEventListener('load', function () {
         btnOn("button");
     };
 
+    const generarPassword = size => {
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+~`|}{[]:;?><,./-=";
+        let pass = ""
+        for (let i = 0; i < size; i++) {
+            const randomChar = chars[Math.floor(Math.random() * chars.length)];
+            console.log(randomChar);
+            pass += randomChar;
+            console.log(pass);
+        }
+        console.log(pass);
+        return pass;
+    }
+
+    const generarPass = () => {
+        const size = cantDigitos.value 
+        const newPass = generarPassword(size)
+        inputPassword.value = newPass
+        inputPasswordRepetida.value = newPass
+        inputGenerarPass.value = "guarda tu password!"
+        passGenerado.classList.add("msj")
+        passGenerado.innerText = newPass
+    }
+
     inputNombre.addEventListener('click', cambiarClase);
     inputApellido.addEventListener('click', cambiarClase);
     inputEmail.addEventListener('click', cambiarClase);
     inputPassword.addEventListener('click', cambiarClase);
     inputPasswordRepetida.addEventListener('click', cambiarClase);
+    inputGenerarPass.addEventListener('click', generarPass);
 
 });

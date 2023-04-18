@@ -70,17 +70,44 @@ form label {
     margin-bottom: .3rem;
 }
 
-form input {
+form input, #passGenerado {
     border-radius: 100vh;
     margin-bottom: 1rem;
     padding: .3rem 1rem;
     border: 3px solid var(--app-grey);
 }
 
-form input:focus {
+form input:focus, #passGenerado:focus {
     outline: none;
     border: 3px solid var(--lila);
     transition: border 0.7s ease;
+}
+
+#inputGenerarPass, #passGenerado{
+    width: 65%;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    border: 3px solid white;
+    background-color: white;
+    color: black;
+}
+
+#inputGenerarPass:hover ,#passGenerado:hover{
+    background-color: var(--lila);
+    color: var(--azul-hover);
+    font-weight: bold;
+    border: 3px solid var(--azul-hover);
+    transition: border 0.3s ease;
+}
+
+#passGenerado{
+    cursor: text;
+    display: none;
+}
+#cantDigitos{
+    width: 33%;
+    text-align: center;
 }
 
 form button{
@@ -152,4 +179,8 @@ footer img {
     background-color: #ff7059ff;
     color: rgb(187, 181, 181);
     cursor: progress;
+}
+
+.msj{
+    display: block !important;
 }
